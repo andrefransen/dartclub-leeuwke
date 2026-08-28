@@ -1,0 +1,5 @@
+Dartclub 't Leeuwke — v2.4.2 SCHOON
+
+Basis: volledig werkende v2.4.
+Alleen zichtbare ontwikkelteksten en het uitgeschakelde registratieformulier zijn verwijderd.
+Essentiële centrale functies en GraphQL-mutaties zijn vóór export gecontroleerd.

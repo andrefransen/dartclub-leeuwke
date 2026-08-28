@@ -1,0 +1,26 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dartclub 't Leeuwke</title><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="wrap"><small>DARTCOMPETITIE</small><h1>Dartclub 't Leeuwke</h1><p id="seasonTitle"></p></div></header>
+<main class="wrap"><nav><button class="tab active" data-tab="kruis">Kruistabel</button><button class="tab" data-tab="uitslagen">Uitslagen</button><button class="tab" data-tab="stand">Stand</button><button class="tab" data-tab="spelers">Spelers</button><button class="tab" data-tab="seizoenen">Seizoenen</button><button class="tab" data-tab="beheer">Beheerder</button></nav>
+<section id="kruis" class="panel active"><h2>Kruistabel</h2><div class="scroll"><table id="cross"></table></div></section>
+<section id="uitslagen" class="panel"><h2>Uitslagen</h2><p></p><div class="filters"><select id="pf"><option value="">Alle spelers</option></select><select id="sf"><option value="all">Alle wedstrijden</option><option value="played">Gespeeld</option><option value="open">Nog te spelen</option></select></div><div class="scroll"><table><thead><tr><th>#</th><th>Speeldatum</th><th>Speler 1</th><th></th><th>Speler 2</th><th>Uitslag</th><th>Status</th></tr></thead><tbody id="matches"></tbody></table></div></section>
+<section id="stand" class="panel"><h2>Stand</h2><div class="scroll"><table><thead><tr><th>Pos</th><th>Speler</th><th>G</th><th>W</th><th>V</th><th>Legs +</th><th>Legs -</th><th>Saldo</th></tr></thead><tbody id="standing"></tbody></table></div></section>
+<section id="spelers" class="panel"><h2>Spelersbeheer <span class="muted"></span></h2><p></p><form id="add"><input id="newname" placeholder="Naam nieuwe speler" maxlength="80" required><button>Speler toevoegen</button></form><div id="msg"></div><div class="scroll"><table><thead><tr><th>Naam</th><th>Status</th><th>Actie</th></tr></thead><tbody id="plist"></tbody></table></div></section>
+<section id="seizoenen" class="panel"><h2>Seizoenen</h2><p></p><div class="season-actions"><button id="syncRosterBtn" type="button">Actieve spelers overnemen in huidig seizoen</button><span id="rosterLockInfo" class="muted"></span></div><form id="newSeasonForm"><input id="newSeasonName" placeholder="Bijv. 2026-2027" maxlength="40" required><button>Nieuw seizoen</button></form><div id="seasonMsg"></div><div class="scroll"><table><thead><tr><th>Seizoen</th><th>Spelers</th><th>Wedstrijden</th><th>Actie</th></tr></thead><tbody id="seasonList"></tbody></table></div></section>
+
+<section id="beheer" class="panel">
+  <h2>Beheerder login</h2>
+  <p class="muted">Log in om de competitie te beheren.</p>
+  <div id="authStatus" class="auth-status muted">Niet ingelogd</div>
+  <div class="auth-grid">
+    
+    <form id="loginForm" class="auth-card">
+      <h3>Inloggen</h3>
+      <label>E-mail<input id="loginEmail" type="email" required></label>
+      <label>Wachtwoord<input id="loginPassword" type="password" minlength="3" maxlength="50" required></label>
+      <button type="submit">Inloggen</button>
+    </form>
+  </div>
+  <div class="auth-actions"><button id="logoutBtn" type="button" disabled>Uitloggen</button></div>
+  <div id="authMessage" class="auth-message"></div>
+</section>
+</main><script src="app.js"></script></body></html>
