@@ -558,5 +558,18 @@ async function startApp() {
   renderAll();
 }
 
+
+function printSection(sectionId){
+  const allowed=["kruis","uitslagen","stand"];
+  if(!allowed.includes(sectionId)) return;
+  document.body.classList.remove("print-kruis","print-uitslagen","print-stand");
+  document.body.classList.add("print-"+sectionId);
+  window.print();
+}
+
+window.addEventListener("afterprint",()=>{
+  document.body.classList.remove("print-kruis","print-uitslagen","print-stand");
+});
+
 setupAuth();
 startApp();

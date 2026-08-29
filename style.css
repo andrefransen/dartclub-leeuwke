@@ -20,3 +20,28 @@
 .auth-message.ok{color:#166534}.auth-message.err{color:#b91c1c}
 .auth-actions{margin-top:14px}
 @media(max-width:700px){.auth-grid{grid-template-columns:1fr}}
+
+
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px}.section-title h2{margin:0}.print-btn{background:#171717;color:#fff}
+
+@media print{
+  @page{size:landscape;margin:10mm}
+  body{background:#fff;color:#000}
+  header{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:0 0 10px;margin-bottom:12px}
+  header small{color:#000}header h1{font-size:24pt;margin:2px 0}header p{color:#000;margin:2px 0}
+  nav,.print-btn,.filters,#beheer,#spelers,#seizoenen{display:none!important}
+  main.wrap{width:100%;margin:0}
+  main>.panel{display:none!important;border:0;border-radius:0;padding:0;margin:0;background:#fff}
+  body.print-kruis #kruis,body.print-uitslagen #uitslagen,body.print-stand #stand{display:block!important}
+  .section-title{display:block}.section-title h2{margin:0 0 10px}
+  .scroll{overflow:visible}
+  table{width:100%;min-width:0;font-size:9pt}
+  th,td{padding:5px 4px;border:1px solid #aaa;white-space:nowrap}
+  th{background:#eee!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cross td:first-child,.cross th:first-child{position:static;background:#fff}.cross th:first-child{background:#eee!important}
+  .diag{background:#e5e7eb!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  input.date,input.score{border:0!important;padding:0!important;background:transparent!important;color:#000!important;font:inherit}
+  input.date{width:92px}.score{width:18px}
+  .ok,.err,.muted{color:#000!important}
+  body.print-kruis table{font-size:7.5pt}body.print-kruis th,body.print-kruis td{padding:4px 2px}
+}
