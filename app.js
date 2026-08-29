@@ -177,6 +177,7 @@ function renderGames(){
     <td class="match-status" data-id="${g.id}">
       ${valid(g)?'<span class="ok">✓ Geldig</span>':(g.s1!==""||g.s2!==""?'<span class="muted">Vul beide scores in</span>':'<span class="muted">Nog te spelen</span>')}
     </td>
+    <td><button class="match-form-btn" type="button" onclick="printMatchForm('${g.id}')">🖨️ Formulier</button></td>
   </tr>`).join("");
 
   function updateLocalScoreState(game){
@@ -558,6 +559,42 @@ async function startApp() {
   renderAll();
 }
 
+
+function printMatchForm(gameId){
+  const g=season().games.find(x=>String(x.id)===String(gameId));
+  if(!g){alert("Wedstrijd niet gevonden.");return;}
+
+  const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const player1=esc(pname(g.p1));
+  const player2=esc(pname(g.p2));
+  const seasonName=esc(season().name);
+  const rows=[
+    [1,"501 Open in / Double out"],
+    [2,"501 Open in / Double out"],
+    [3,"501 Open in / Double out"],
+    [4,"501 Double in / Double out"],
+    [5,"501 Double in / Double out"],
+    [6,"501 Double in / Double out"],
+    [7,"Bermuda"]
+  ].map(([nr,type])=>`<tr><td>${nr}</td><td>${type}</td><td class="check">□</td><td class="check">□</td></tr>`).join("");
+
+  const w=window.open("","_blank","width=900,height=750");
+  if(!w){alert("Sta pop-ups toe om het wedstrijdformulier te printen.");return;}
+  w.document.write(`<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Wedstrijdformulier - ${player1} - ${player2}</title><style>
+    @page{size:A4 portrait;margin:15mm}
+    *{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#171717;margin:0}.sheet{max-width:180mm;margin:auto}
+    .head{border-bottom:4px solid #b91c1c;padding-bottom:10px;margin-bottom:18px}.head small{font-weight:bold;letter-spacing:1px}.head h1{margin:4px 0;font-size:25px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin:18px 0}.meta div{border-bottom:1px solid #777;padding:7px 0}.meta .wide{grid-column:1/-1}
+    table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #888;padding:11px 9px;text-align:center}th{background:#eee}th:nth-child(2),td:nth-child(2){text-align:left}.check{font-size:25px;width:25%}
+    .final td{font-weight:bold;font-size:18px}.notes{margin-top:24px}.line{height:30px;border-bottom:1px solid #999}.hint{font-size:12px;color:#555;margin-top:10px}
+    @media print{.no-print{display:none}.sheet{max-width:none}}
+  </style></head><body><div class="sheet"><div class="head"><small>DARTCOMPETITIE</small><h1>Dartclub 't Leeuwke</h1><div>Wedstrijdformulier</div></div>
+  <div class="meta"><div><strong>Seizoen:</strong> ${seasonName}</div><div><strong>Datum:</strong> ____ / ____ / ______</div><div class="wide"><strong>Speler 1:</strong> ${player1}</div><div class="wide"><strong>Speler 2:</strong> ${player2}</div></div>
+  <table><thead><tr><th>Leg</th><th>Spelvorm</th><th>${player1}</th><th>${player2}</th></tr></thead><tbody>${rows}<tr class="final"><td colspan="2">Eindstand</td><td>_____</td><td>_____</td></tr></tbody></table>
+  <div class="notes"><strong>Opmerkingen</strong><div class="line"></div><div class="line"></div></div><p class="hint">Kruis per leg de winnaar aan en noteer onderaan de eindstand.</p></div></body></html>`);
+  w.document.close();
+  w.focus();
+  setTimeout(()=>w.print(),250);
+}
 
 function printSection(sectionId){
   const allowed=["kruis","uitslagen","stand"];

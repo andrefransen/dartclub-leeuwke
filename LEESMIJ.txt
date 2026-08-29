@@ -6,3 +6,9 @@ Essentiële centrale functies en GraphQL-mutaties zijn vóór export gecontrolee
 
 
 v2.4.3: printfunctie toegevoegd voor Kruistabel, Uitslagen en Stand.
+
+
+v2.4.4 - Wedstrijdformulier
+- Per wedstrijd een eenvoudig printbaar A4-wedstrijdformulier.
+- Seizoen en spelers worden automatisch ingevuld; datum blijft handmatig.
+- 7 legs: 3x 501 open in/double out, 3x 501 double in/double out, 1x Bermuda.

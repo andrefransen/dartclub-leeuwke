@@ -45,3 +45,6 @@
   .ok,.err,.muted{color:#000!important}
   body.print-kruis table{font-size:7.5pt}body.print-kruis th,body.print-kruis td{padding:4px 2px}
 }
+
+.match-form-btn{background:#171717;color:#fff;padding:8px 10px;white-space:nowrap}
+@media print{.match-form-btn{display:none!important}body.print-uitslagen th:last-child,body.print-uitslagen td:last-child{display:none!important}}
