@@ -12,3 +12,9 @@ v2.4.4 - Wedstrijdformulier
 - Per wedstrijd een eenvoudig printbaar A4-wedstrijdformulier.
 - Seizoen en spelers worden automatisch ingevuld; datum blijft handmatig.
 - 7 legs: 3x 501 open in/double out, 3x 501 double in/double out, 1x Bermuda.
+
+
+v2.4.5 CLUBSTIJL
+- Originele dartbordafbeelding als header/banner toegevoegd.
+- Originele darter-afbeelding subtiel in de header toegevoegd.
+- Geen wijzigingen aan database, Nhost, login of competitielogica.

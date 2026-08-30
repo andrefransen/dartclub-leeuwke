@@ -1,4 +1,9 @@
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f4f6;color:#171717}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}header{background:#161616;color:#fff;padding:32px 0;border-bottom:5px solid #b91c1c}header h1{font-size:clamp(2rem,5vw,3.4rem);margin:4px 0}header p{color:#d4d4d4}nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 14px}button,.tab{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.tab{background:#ddd}.tab.active,form button,.current{background:#171717;color:#fff}.panel{display:none;background:#fff;border-left:5px solid #b91c1c;border-radius:12px;padding:20px;margin-bottom:24px}.panel.active{display:block}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{padding:10px 9px;border-bottom:1px solid #d1d5db;text-align:center;white-space:nowrap}th{background:#262626;color:#fff}th:nth-child(2),td:nth-child(2){text-align:left}.cross td:first-child,.cross th:first-child{position:sticky;left:0;background:#fff;text-align:left}.cross th:first-child{background:#262626}.diag{background:#e5e7eb!important;font-weight:bold}.score{width:45px;padding:7px;text-align:center}.date,input,select{padding:8px;border:1px solid #bbb;border-radius:6px}.filters,form{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.ok{color:#166534;font-weight:bold}.err{color:#b91c1c;font-weight:bold}.muted{color:#6b7280}.name{width:300px}#msg,#seasonMsg{min-height:25px;font-weight:bold}.season-active{font-weight:bold}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f4f6;color:#171717}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}header{background:#161616 url('dartlogo.jpg') center/cover no-repeat;color:#fff;padding:32px 0;border-bottom:5px solid #b91c1c;position:relative}
+header:before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.48)}
+header .wrap{position:relative;z-index:1}
+.header-content{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.header-text{min-width:0}
+.header-darter{width:92px;max-height:145px;object-fit:contain;border-radius:8px}header h1{font-size:clamp(2rem,5vw,3.4rem);margin:4px 0}header p{color:#d4d4d4}nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 14px}button,.tab{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.tab{background:#ddd}.tab.active,form button,.current{background:#171717;color:#fff}.panel{display:none;background:#fff;border-left:5px solid #b91c1c;border-radius:12px;padding:20px;margin-bottom:24px}.panel.active{display:block}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{padding:10px 9px;border-bottom:1px solid #d1d5db;text-align:center;white-space:nowrap}th{background:#262626;color:#fff}th:nth-child(2),td:nth-child(2){text-align:left}.cross td:first-child,.cross th:first-child{position:sticky;left:0;background:#fff;text-align:left}.cross th:first-child{background:#262626}.diag{background:#e5e7eb!important;font-weight:bold}.score{width:45px;padding:7px;text-align:center}.date,input,select{padding:8px;border:1px solid #bbb;border-radius:6px}.filters,form{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.ok{color:#166534;font-weight:bold}.err{color:#b91c1c;font-weight:bold}.muted{color:#6b7280}.name{width:300px}#msg,#seasonMsg{min-height:25px;font-weight:bold}.season-active{font-weight:bold}
 .season-actions{
   display:flex;
   gap:12px;
@@ -28,7 +33,7 @@
   @page{size:landscape;margin:10mm}
   body{background:#fff;color:#000}
   header{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:0 0 10px;margin-bottom:12px}
-  header small{color:#000}header h1{font-size:24pt;margin:2px 0}header p{color:#000;margin:2px 0}
+  header small{color:#000}.header-darter{display:none!important}header h1{font-size:24pt;margin:2px 0}header p{color:#000;margin:2px 0}
   nav,.print-btn,.filters,#beheer,#spelers,#seizoenen{display:none!important}
   main.wrap{width:100%;margin:0}
   main>.panel{display:none!important;border:0;border-radius:0;padding:0;margin:0;background:#fff}
@@ -48,3 +53,5 @@
 
 .match-form-btn{background:#171717;color:#fff;padding:8px 10px;white-space:nowrap}
 @media print{.match-form-btn{display:none!important}body.print-uitslagen th:last-child,body.print-uitslagen td:last-child{display:none!important}}
+
+@media(max-width:600px){.header-darter{width:68px;max-height:110px}header{padding:24px 0}}
