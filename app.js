@@ -599,9 +599,39 @@ function printMatchForm(gameId){
 function printSection(sectionId){
   const allowed=["kruis","uitslagen","stand"];
   if(!allowed.includes(sectionId)) return;
-  document.body.classList.remove("print-kruis","print-uitslagen","print-stand");
-  document.body.classList.add("print-"+sectionId);
-  window.print();
+
+  // Uitslagen print op iPhone al goed via de bestaande methode.
+  if(sectionId==="uitslagen"){
+    document.body.classList.remove("print-kruis","print-uitslagen","print-stand");
+    document.body.classList.add("print-uitslagen");
+    window.print();
+    return;
+  }
+
+  // iOS print brede tabellen betrouwbaarder vanuit een apart printvenster.
+  const panel=document.getElementById(sectionId);
+  const table=panel?.querySelector("table");
+  if(!panel||!table){alert("Tabel niet gevonden.");return;}
+
+  const title=sectionId==="kruis"?"Kruistabel":"Stand";
+  const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const seasonName=esc(season()?.name||"");
+  const w=window.open("","_blank","width=1100,height=800");
+  if(!w){alert("Sta pop-ups toe om deze pagina te printen.");return;}
+
+  w.document.write(`<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} - ${seasonName}</title><style>
+    @page{size:A4 landscape;margin:8mm}
+    *{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#171717;margin:0}.sheet{width:100%;margin:auto}
+    .head{border-bottom:3px solid #b91c1c;padding-bottom:8px;margin-bottom:12px}.head small{font-weight:bold;letter-spacing:1px}.head h1{margin:3px 0;font-size:22px}.head p{margin:2px 0}.title{font-size:18px;font-weight:bold;margin-top:5px}
+    table{border-collapse:collapse;width:100%;min-width:0;font-size:${sectionId==="kruis"?"7.5pt":"9pt"}}
+    th,td{padding:${sectionId==="kruis"?"4px 2px":"5px 4px"};border:1px solid #aaa;text-align:center;white-space:nowrap}
+    th{background:#eee;color:#000}th:nth-child(2),td:nth-child(2){text-align:left}
+    .cross td:first-child,.cross th:first-child{position:static;background:#fff;text-align:left}.cross th:first-child{background:#eee}.diag{background:#e5e7eb!important;font-weight:bold}
+    @media print{.sheet{width:100%}th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.diag{background:#e5e7eb!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  </style></head><body><div class="sheet"><div class="head"><small>DARTCOMPETITIE</small><h1>Dartclub 't Leeuwke</h1><p>${seasonName}</p><div class="title">${title}</div></div>${table.outerHTML}</div></body></html>`);
+  w.document.close();
+  w.focus();
+  setTimeout(()=>w.print(),250);
 }
 
 window.addEventListener("afterprint",()=>{

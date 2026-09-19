@@ -18,3 +18,9 @@ v2.4.5 CLUBSTIJL
 - Originele dartbordafbeelding als header/banner toegevoegd.
 - Originele darter-afbeelding subtiel in de header toegevoegd.
 - Geen wijzigingen aan database, Nhost, login of competitielogica.
+
+
+v2.4.6 - MOBILE PRINTFIX
+- Kruistabel en Stand printen via apart printvenster voor betere iPhone/iOS-ondersteuning.
+- Uitslagen behoudt de bestaande printmethode.
+- Geen wijzigingen aan Nhost, database, login of competitielogica.
